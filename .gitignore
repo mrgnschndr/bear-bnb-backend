@@ -1,0 +1,64 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+# Editor files
+.vscode/
+*.suo
+*.user
+*.sln
+*.tmp
+*.bak
+*.suo
+*.user
+*.sln
+*.tmp
+*.bak
+*.vbp
+*.ncb
+*.aps
+*.idl
+*.manifest
+*.pch
+*.obj
+*.res
+*.tlb
+*.map
+*.ilk
+*.exp
+*.lib
+*.pdb
+*.idb
+*.plg
+*.bsc
+*.scc
+*.vspscc
+*.scc
+*.vspscc
+*.suo
+*.user
+*.sln
+*.tmp
+*.bak
+*.vbp
+*.ncb
+*.aps
+*.idl
+*.manifest
+*.pch
+*.obj
+*.res
+*.tlb
+*.*.user
+*.*.vspscc
+
+# Local configuration files
+.env
+.env.*
+
+# Testing
+/coverage/
+
+# IDE specific files
+/.idea/
+.DS_Store
