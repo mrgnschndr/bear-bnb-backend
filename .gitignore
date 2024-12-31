@@ -2,63 +2,54 @@
 node_modules/
 npm-debug.log
 
-# Editor files
+# Environment files
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Database files
+db.js
+db.json
+db.sqlite 
+# Add other database-related files here (e.g., db.config.js, database.yml)
+
+# Secrets
+secrets.json
+api_keys.json
+credentials.yml
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# IDE files
 .vscode/
 *.suo
 *.user
 *.sln
-*.tmp
-*.bak
-*.suo
-*.user
-*.sln
-*.tmp
-*.bak
-*.vbp
-*.ncb
-*.aps
-*.idl
-*.manifest
-*.pch
-*.obj
-*.res
-*.tlb
-*.map
-*.ilk
-*.exp
-*.lib
-*.pdb
-*.idb
-*.plg
-*.bsc
-*.scc
-*.vspscc
-*.scc
-*.vspscc
-*.suo
-*.user
-*.sln
-*.tmp
-*.bak
-*.vbp
-*.ncb
-*.aps
-*.idl
-*.manifest
-*.pch
-*.obj
-*.res
-*.tlb
-*.*.user
-*.*.vspscc
+*.csproj
+*.vcxproj
 
-# Local configuration files
-.env
-.env.*
+# Log files
+*.log
+npm-debug.log
 
-# Testing
-/coverage/
+# Test reports
+test-results/
 
-# IDE specific files
-/.idea/
-.DS_Store
+# Editor files
+.DS_Store 
+.idea/
+*.iml
+
+# Temporary files
+*.tmp
+*~
+
+# OS generated files
+.DS_Store 
+Thumbs.db
