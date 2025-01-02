@@ -1,18 +1,18 @@
 CREATE TABLE IF NOT EXISTS listings (
-    listing_id SERIAL PRIMARY KEY, -- listing id
+    listing_id SERIAL PRIMARY KEY, -- listing idhost_id INTEGER REFERENCES host(host_id),
+    host_id INTEGER REFERENCES host(host_id),
     listing_address TEXT, -- listing address
     listing_city VARCHAR(50), -- listing city
     listing_state VARCHAR(50), -- listing state
     price_per_night MONEY, -- price of listing per night
     full_rating SMALLINT, -- full star rating of listing
     main_image_url TEXT, -- url of main image
-    list_image_url TEXT, -- url of other listing images
+    list_image_url TEXT[], -- url of other listing images
     listing_title VARCHAR(50), -- title of listing
     listing_access VARCHAR(50), -- does guest have partial house or entire house
     listing_max_guest SMALLINT, -- max amount of guests allowed
     listing_bedrooms SMALLINT, -- the amount of bedrooms in the listing
     listing_baths SMALLINT,  -- the amount of bathrooms in the listing
-    host_id SERIAL, -- host id
     is_self_checkin BOOLEAN, -- can you self check in?
     is_peaceful BOOLEAN,  -- is the area peaceful?
     fun_tip VARCHAR(255), -- anything special about the listing
