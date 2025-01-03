@@ -1,13 +1,13 @@
-const pool = require("./db/db.js");
-const faker = require("faker");
+const pool = require("../db/db.js");
+const { faker } = require('@faker-js/faker');
 
 const seedUsers = async () => {
   const users = [];
   
   for (let i = 0; i < 100; i++) {
     
-    const user_first_name = faker.name.firstName();
-    const user_last_name = faker.name.lastName();
+    const user_first_name = faker.person.firstName();
+    const user_last_name = faker.person.lastName();
     const user_city = faker.address.city();
     const user_state = faker.address.state();
     const user_country = faker.address.country();
@@ -20,8 +20,10 @@ const seedUsers = async () => {
     const user_birth_month = faker.date.past().getMonth() + 1; // 1-12
     const user_birth_day = faker.date.past().getDate(); // 1-31
     const user_birth_year = faker.date.past().getFullYear(); // Get a past year (for the birth year)
-    const user_phone = faker.phone.phoneNumber();
+    const user_phone = faker.phone.number({ style: 'national' })
     const user_image_url = faker.image.avatar(); // Random avatar image URL
+
+    console.log(users);
 
     users.push({
       user_first_name,
@@ -38,8 +40,6 @@ const seedUsers = async () => {
       user_phone,
       user_image_url
     });
-  }
-  
   }
 
   try {
@@ -60,25 +60,25 @@ const seedUsers = async () => {
           ,user_birth_year
           ,user_phone
           ,user_image_url
-          )
-        VALUES (
-          $1
-          ,$2
-          ,$3
-          ,$4
-          ,$5
-          ,$6
-          ,$7
-          ,$8
-          ,$9
-          ,$10
-          ,$11
-          ,$12
-          ,$13
         )
-      `,
-        [user.name, user.email, user.createdAt]
-      );
+        VALUES (
+          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13
+        )
+      `, [
+        user.user_first_name,
+        user.user_last_name,
+        user.user_city,
+        user.user_state,
+        user.user_country,
+        user.is_logged_in,
+        user.is_host,
+        user.user_email,
+        user.user_birth_month,
+        user.user_birth_day,
+        user.user_birth_year,
+        user.user_phone,
+        user.user_image_url
+      ]);
     }
     console.log("Users seeded successfully");
     client.release();
