@@ -4,7 +4,6 @@ const faker = require("faker");
 const seedUsers = async () => {
   const users = [];
   
-  // TODO: Create 100 Users 10 have to be host
   for (let i = 0; i < 100; i++) {
     
     const user_first_name = faker.name.firstName();
@@ -14,7 +13,7 @@ const seedUsers = async () => {
     const user_country = faker.address.country();
     const is_logged_in = false;
     
-    // Randomly decide if this user will be a host (10 out of 100)
+    // TODO: Make this more random than just the first 10 users
     const is_host = i < 10; // First 10 users are hosts
 
     const user_email = faker.internet.email(user_first_name, user_last_name);
@@ -23,6 +22,24 @@ const seedUsers = async () => {
     const user_birth_year = faker.date.past().getFullYear(); // Get a past year (for the birth year)
     const user_phone = faker.phone.phoneNumber();
     const user_image_url = faker.image.avatar(); // Random avatar image URL
+
+    users.push({
+      user_first_name,
+      user_last_name,
+      user_city,
+      user_state,
+      user_country,
+      is_logged_in,
+      is_host,
+      user_email,
+      user_birth_month,
+      user_birth_day,
+      user_birth_year,
+      user_phone,
+      user_image_url
+    });
+  }
+  
   }
 
   try {
