@@ -7,8 +7,6 @@ CREATE TABLE IF NOT EXISTS users (
     user_country VARCHAR(50),
     is_logged_in BOOLEAN,
     is_host BOOLEAN,
-    host_id INTEGER REFERENCES host(host_id),
-    date_on_airbnb DATE,
     user_email VARCHAR(255) UNIQUE,
     user_birth_month SMALLINT CHECK (user_birth_month BETWEEN 1 AND 12),
     user_birth_day SMALLINT CHECK (user_birth_day BETWEEN 1 AND 31),
