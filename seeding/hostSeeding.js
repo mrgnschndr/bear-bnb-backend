@@ -1,18 +1,21 @@
 const pool = require("../db/db.js");
 const { faker } = require('@faker-js/faker');
 
+pool.on('connect', () => console.log("Database connected successfully."));
+pool.on('error', (err) => console.error("Database connection error:", err));
+pool.on('end', () => console.log("Database pool has ended."));
+
+
 const seedHosts = async () => {
   const hosts = [];
   
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     
-    const is_superhost = 0 //faker data;
-    const number_reviews = 0 //faker data;
-    const host_rating = 0 //faker data;
-    const date_hosted = 0 //faker data;
-    const host_bio = 0 //faker data;
-
-    console.log(hosts);
+    const number_reviews = faker.number.int({ min: 0, max: 500 }); // Corrected for version 9.3.0
+    const host_rating = Math.round(faker.number.float({ min: 1, max: 5, precision: 0.1 }));
+    const is_superhost = number_reviews > 100 && host_rating === 5.0; // Superhost condition
+    const date_hosted = faker.date.past(10).toISOString(); // Random date within the past 10 years
+    const host_bio = faker.lorem.sentence(); // Random short sentence as bio
 
     hosts.push({
         is_superhost,
@@ -22,6 +25,8 @@ const seedHosts = async () => {
         host_bio
     });
   }
+
+  console.log(`Number of hosts to seed: ${hosts.length}`);
 
   try {
     const client = await pool.connect();
