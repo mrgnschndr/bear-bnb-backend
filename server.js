@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config(); 
 
+// Import routes
+const usersRouter = require('./routes/userRoutes');
+
 const app = express();
 const port = process.env.PORT || 5001; 
 
@@ -10,10 +13,7 @@ app.use(cors());
 app.use(express.json()); 
 
 // Routes
-// (user routes)
-// (listing routes)
-// (booking routes)??
-// (review routes)??
+app.use(usersRouter);
 
 // Start the server
 app.listen(port, () => {
