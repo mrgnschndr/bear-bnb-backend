@@ -87,13 +87,4 @@ const seedUsers = async () => {
   }
 };
 
-// Seed all tables in order
-const seedDatabase = async () => {
-  await seedUsers();
-  // await seedListings();
-  // await seedBookings();
-  console.log("Database seeding complete!");
-  pool.end(); // Close the pool
-};
-
-seedDatabase();
+module.exports = { seedUsers };

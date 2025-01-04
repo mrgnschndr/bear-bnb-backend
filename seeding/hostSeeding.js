@@ -1,11 +1,6 @@
 const pool = require("../db/db.js");
 const { faker } = require('@faker-js/faker');
 
-pool.on('connect', () => console.log("Database connected successfully."));
-pool.on('error', (err) => console.error("Database connection error:", err));
-pool.on('end', () => console.log("Database pool has ended."));
-
-
 const seedHosts = async () => {
   const hosts = [];
   
@@ -57,11 +52,4 @@ const seedHosts = async () => {
   }
 };
 
-// Seed all tables in order
-const seedDatabase = async () => {
-  await seedHosts();
-  console.log("Host seeding complete!");
-  pool.end(); // Close the pool
-};
-
-seedDatabase();
+module.exports = { seedHosts };
