@@ -8,9 +8,9 @@ const seedUsers = async () => {
     
     const user_first_name = faker.person.firstName();
     const user_last_name = faker.person.lastName();
-    const user_city = faker.address.city();
-    const user_state = faker.address.state();
-    const user_country = faker.address.country();
+    const user_city = faker.location.city();
+    const user_state = faker.location.state();
+    const user_country = faker.location.country();
     const is_logged_in = false;
     
     // TODO: Make this more random than just the first 10 users

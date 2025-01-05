@@ -2,7 +2,10 @@ const pool = require("../db/db.js");
 const { faker } = require('@faker-js/faker');
 
 const seedListings = async () => {
-    const title = faker.word.adjective({ length: { max: 7 } })+ faker.word.adverb({ length: { max: 7 }})+ faker.word.noun({ length: { max: 7 }});
+  const listing = [];
+  
+  for (let i = 0; i < 50; i++) {
+    const title = faker.word.adjective({ length: { max: 7 } })+" "+ faker.word.adjective({ length: { max: 7 } }) +" " + faker.word.noun({ length: { max: 7 }})+" home";
     const access = ["Partial House", "Whole House"];
     const randomNumber2 = Math.floor(Math.random() * 2)
     const randomNumber4 = Math.floor(Math.random() * 4)
@@ -10,17 +13,14 @@ const seedListings = async () => {
     const propertyType = ["House", "Apartment", "Guesthouse", "Hotel"]
     const listingTag = ["Icons", "Mansions", "Lakefront", "Amazing views", "Cabins", "Treehouses", "Castles", "Countryside", "Tropical", "Trending"]
     const accessible = ["step-free access", "accessible parking space", "shower grab bar", "toilet grab bar"]
-    const listings = [];
-  
-  for (let i = 0; i < 50; i++) {
 
     const listing_address = faker.location.streetAddress();
     const listing_city = faker.location.city();
     const listing_state = faker.location.state()
     const price_per_night = faker.commerce.price({ min: 39, max: 1500, dec: 0, symbol: '$' })
     const full_rating = Math.round(faker.number.float({ min: 1, max: 5, precision: 0.1 }));
-    const main_image_url = faker.image.urlLoremFlickr({ category: 'nature' })
-    const list_image_url = faker.image.urlLoremFlickr({ category: 'nature' })
+    const main_image_url = faker.image.urlLoremFlickr(({ category: 'nature' }));
+    const list_image_url = [faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' }))];
     const listing_title = title;
     const listing_access = access[randomNumber2];
     const listing_max_guest = faker.number.int({ min: 2, max: 15 });
@@ -58,7 +58,7 @@ const seedListings = async () => {
     const coffee_maker = faker.datatype.boolean(0.7);
     const free_breakfast = faker.datatype.boolean(0.3);
 
-    listings.push({
+    listing.push({
         listing_address,
         listing_city,
         listing_state,
@@ -105,11 +105,11 @@ const seedListings = async () => {
     });
   }
 
-  console.log(`Number of listings to seed: ${listings.length}`);
+  console.log(`Number of listings to seed: ${listing.length}`);
 console.log("Life")
   try {
     const client = await pool.connect();
-    for (const listings of listings) {
+    for (const listings of listing) {
       await client.query(`
         INSERT INTO listings (
         listing_address,

@@ -1,8 +1,8 @@
 const pool = require("../db/db.js");
 const { seedUsers } = require('./userSeeding.js');
 const { seedHosts } = require('./hostSeeding.js');
-// const { seedListings } = require('./listingSeeding.js');
-// const { seedReviews } = require('./reviewSeeding.js');
+const { seedListings } = require('./listingSeeding.js');
+const { seedReviews } = require('./reviewSeeding.js');
 
 // Connection logging
 pool.on('connect', () => console.log("Database connected successfully."));
@@ -20,11 +20,11 @@ const runAllSeeds = async () => {
     console.log("Seeding hosts...");
     await seedHosts();
 
-    // console.log("Seeding listings...");
-    // await seedListings();
+    console.log("Seeding listings...");
+    await seedListings();
 
-    // console.log("Seeding reviews...");
-    // await seedReviews();
+    console.log("Seeding reviews...");
+    await seedReviews();
 
     console.log("All seeding completed successfully!");
   } catch (error) {
