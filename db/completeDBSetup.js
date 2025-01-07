@@ -1,6 +1,6 @@
 // Create initial pool for creating the DB in postgres
 const pool = require('../db/db.js');
-
+const { runAllSeeds } = require('../seeding/seeder.js');
 
 const completeDBSetup = async () => {
     const client = await pool.connect();
@@ -127,12 +127,19 @@ const completeDBSetup = async () => {
             console.log("Table 'reviews' created.");
         }
 
+        // Check all tables were created successfully
         if (await client.query(`SELECT * FROM users`) && await client.query(`SELECT * FROM host`) && await client.query(`SELECT * FROM listings`) && await client.query(`SELECT * FROM reviews`)) {
             console.log("All tables created successfully.");
         }
 
-
+        // Seed all tables
         console.log("Seeding all tables...");
+        runAllSeeds();
+
+
+
+
+
     } catch (err) {
         console.error("Error creating tables:", err.message);
     } finally {
@@ -141,6 +148,7 @@ const completeDBSetup = async () => {
     }
 };
 
+// Execute the function
 completeDBSetup()
-    .then(() => console.log("Database 'beardb' setup success!"))
+    .then(() => console.log("Database 'beardb' setup completed."))
     .catch((err) => console.error("Unexpected error:", err.message));
