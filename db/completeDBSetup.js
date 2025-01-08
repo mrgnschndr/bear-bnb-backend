@@ -47,8 +47,8 @@ const completeDBSetup = async () => {
                 user_first_name VARCHAR(100),
                 user_last_name VARCHAR(100),
                 user_city VARCHAR(100),
-                user_state VARCHAR(50),
-                user_country VARCHAR(50),
+                user_state VARCHAR(100),
+                user_country VARCHAR(100),
                 is_logged_in BOOLEAN,
                 is_host BOOLEAN,
                 user_email VARCHAR(255) UNIQUE,
@@ -164,8 +164,8 @@ const completeDBSetup = async () => {
         console.log("Seeding all tables...");
         await runAllSeeds();
 
-        pool.end()
         client.release();
+        pool.end()
 
 
     } catch (err) {
