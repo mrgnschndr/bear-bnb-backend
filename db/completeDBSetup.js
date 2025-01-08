@@ -134,7 +134,7 @@ const completeDBSetup = async () => {
 
         // Seed all tables
         console.log("Seeding all tables...");
-        runAllSeeds();
+        await runAllSeeds();
 
 
 
