@@ -27,7 +27,7 @@ const createHostTable = async () => {
     console.error("Error creating tables:", err.message);
   } finally {
     client.release();
-    // await pool.end(); 
+    await pool.end(); 
   }
 };
 

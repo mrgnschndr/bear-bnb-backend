@@ -1,15 +1,43 @@
 // Create initial pool for creating the DB in postgres
-const pool = require('../db/db.js');
+const { Pool } = require('pg');
+// const pool = require('../db/db.js');
+require('dotenv').config();
 const { runAllSeeds } = require('../seeding/seeder.js');
 
+const pool1 = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: 'postgres', // Connect to default database to create a new one
+    password: process.env.DB_PASS,
+    port: process.env.POOL_PORT,
+});
+
 const completeDBSetup = async () => {
-    const client = await pool.connect();
-
+    
     try {
+        // Drop the database if it exists
+        await pool1.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME}`);
+        console.log(`Database ${process.env.DB_NAME} dropped successfully.`);
+        
+        // Create the database
+        await pool1.query(`CREATE DATABASE ${process.env.DB_NAME}`);
+        console.log(`Database ${process.env.DB_NAME} created successfully.`);
+        
+        // Connect to the new database
+        pool1.end();
+        
+        // We are referencing the const pool from here to the end of the file
+        const pool = new Pool({
+            user: process.env.DB_USER,
+            host: process.env.DB_HOST,
+            database: process.env.NODE_ENV === 'test' ? process.env.DB_TEST_NAME : process.env.DB_NAME,
+            password: process.env.DB_PASS,
+            port: process.env.POOL_PORT,
+        });
+        
+        const client = await pool.connect();
+
         console.log("Creating 'beardb' DB...");
-
-
-
 
         console.log("Creating all tables...");
         // Create users table
@@ -136,19 +164,18 @@ const completeDBSetup = async () => {
         console.log("Seeding all tables...");
         await runAllSeeds();
 
-
-
+        pool.end()
+        client.release();
 
 
     } catch (err) {
         console.error("Error creating tables:", err.message);
-    } finally {
-        client.release();
-        await pool.end();
     }
 };
 
 // Execute the function
 completeDBSetup()
-    .then(() => console.log("Database 'beardb' setup completed."))
+    .then(() => {
+        console.log("Database 'beardb' setup completed.")
+        })
     .catch((err) => console.error("Unexpected error:", err.message));

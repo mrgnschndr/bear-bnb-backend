@@ -23,7 +23,7 @@ const seedUsers = async () => {
     const user_phone = faker.phone.number({ style: 'national' })
     const user_image_url = faker.image.avatar(); // Random avatar image URL
 
-    console.log(users);
+    // console.log(users);
 
     users.push({
       user_first_name,
