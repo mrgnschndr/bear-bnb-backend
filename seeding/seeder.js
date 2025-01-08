@@ -30,9 +30,8 @@ const runAllSeeds = async () => {
   } catch (error) {
     console.error("Error during seeding:", error);
   } finally {
-    await pool.end(); // Ensure pool is closed
     console.log("Database connection closed.");
   }
 };
 
-runAllSeeds();
+module.exports = { runAllSeeds };
