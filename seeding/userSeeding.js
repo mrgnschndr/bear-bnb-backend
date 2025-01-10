@@ -8,6 +8,12 @@ const seedUsers = async () => {
     
     const user_first_name = faker.person.firstName();
     const user_last_name = faker.person.lastName();
+
+    const user_nickname = ""
+    const user_address_one = faker.location.streetAddress();
+    const user_apt = faker.location.secondaryAddress();
+    const user_postal_code = faker.location.zipCode();
+
     const user_city = faker.location.city();
     const user_state = faker.location.state();
     const user_country = faker.location.country();
@@ -28,9 +34,13 @@ const seedUsers = async () => {
     users.push({
       user_first_name,
       user_last_name,
+      user_nickname,
+      user_address_one,
+      user_apt,
       user_city,
       user_state,
       user_country,
+      user_postal_code,
       is_logged_in,
       is_host,
       user_email,
@@ -49,9 +59,13 @@ const seedUsers = async () => {
         INSERT INTO users (
           user_first_name
           ,user_last_name
+          ,user_nickname
+          ,user_address_one
+          ,user_apt
           ,user_city
           ,user_state
           ,user_country
+          ,user_postal_code
           ,is_logged_in
           ,is_host
           ,user_email
@@ -62,14 +76,18 @@ const seedUsers = async () => {
           ,user_image_url
         )
         VALUES (
-          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13
+          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17
         )
       `, [
         user.user_first_name,
         user.user_last_name,
+        user.user_nickname,
+        user.user_address_one,
+        user.user_apt,
         user.user_city,
         user.user_state,
         user.user_country,
+        user.user_postal_code,
         user.is_logged_in,
         user.is_host,
         user.user_email,
