@@ -1,11 +1,11 @@
 const request = require('supertest');
-const app = require('../index'); // Express app
+const app = require('../server'); // Express app
 const { pool } = require('./jest.poolTest.js'); // Ensure same instance is used
 
 describe('User Routes', () => {
   it('should get all users', async () => {
     console.log('Executing GET /users...');
-    const response = await request(app).get('/users');
+    const response = await request(app).get('/api/users');
     expect(response.statusCode).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
 
