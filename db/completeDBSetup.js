@@ -61,6 +61,10 @@ const completeDBSetup = async () => {
                 user_birth_year SMALLINT,
                 user_phone VARCHAR(20),
                 user_image_url TEXT,
+                user_econtact_name VARCHAR(100),
+                user_econtact_relationship VARCHAR(255),
+                user_econtact_email VARCHAR(100),
+                user_econtact_phone VARCHAR(100),
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );

@@ -18,6 +18,11 @@ const seedUsers = async () => {
     const user_state = faker.location.state();
     const user_country = faker.location.country();
     const is_logged_in = false;
+
+    const user_econtact_name = faker.person.firstName();
+    const user_econtact_relationship = "";
+    const user_econtact_email = faker.internet.email(user_first_name, user_last_name);
+    const user_econtact_phone = faker.phone.number({ style: 'national' });
     
     // TODO: Make this more random than just the first 10 users
     const is_host = i < 10; // First 10 users are hosts
@@ -48,7 +53,11 @@ const seedUsers = async () => {
       user_birth_day,
       user_birth_year,
       user_phone,
-      user_image_url
+      user_image_url,
+      user_econtact_name,
+      user_econtact_relationship,
+      user_econtact_email,
+      user_econtact_phone
     });
   }
 
@@ -74,9 +83,13 @@ const seedUsers = async () => {
           ,user_birth_year
           ,user_phone
           ,user_image_url
+          ,user_econtact_name
+          ,user_econtact_relationship
+          ,user_econtact_email
+          ,user_econtact_phone
         )
         VALUES (
-          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17
+          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21
         )
       `, [
         user.user_first_name,
@@ -95,7 +108,11 @@ const seedUsers = async () => {
         user.user_birth_day,
         user.user_birth_year,
         user.user_phone,
-        user.user_image_url
+        user.user_image_url,
+        user.user_econtact_name,
+        user.user_econtact_relationship,
+        user.user_econtact_email,
+        user.user_econtact_phone
       ]);
     }
     console.log("Users seeded successfully");
