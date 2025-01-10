@@ -19,6 +19,10 @@ router.get("/api/users", async (req, res) => {
         , user_phone
         , created_at
         , updated_at
+        ,user_econtact_name
+        ,user_econtact_relationship
+        ,user_econtact_email
+        ,user_econtact_phone
       FROM users
       ORDER BY user_first_name DESC
     `;
