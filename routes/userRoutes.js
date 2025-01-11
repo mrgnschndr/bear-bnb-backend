@@ -9,6 +9,7 @@ router.get("/api/users", async (req, res) => {
       SELECT user_id
         , user_first_name
         , user_last_name
+        , user_nickname
         , user_city
         , user_state
         , user_country
