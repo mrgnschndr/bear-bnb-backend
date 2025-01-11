@@ -7,6 +7,8 @@ const usersRouter = require('./routes/userRoutes');
 const listingsRouter = require('./routes/listingRoutes')
 const reviewsRouter = require('./routes/reviewsRoute')
 
+const hostRouter = require('./routes/hostRoutes')
+
 const app = express();
 const port = process.env.PORT || 5001; 
 
@@ -19,6 +21,7 @@ app.use(usersRouter);
 app.use(listingsRouter);
 app.use(reviewsRouter);
 
+app.use(hostRouter);
 
 // Start the server
 app.listen(port, () => {
