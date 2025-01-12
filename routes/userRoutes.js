@@ -6,26 +6,7 @@ const Pool = require("../db/db.js");
 router.get("/api/users", async (req, res) => {
   try {
     const query = `
-      SELECT user_id
-        , user_first_name
-        , user_last_name
-        , user_nickname
-        , user_address_one
-        , user_apt
-        , user_city
-        , user_state
-        , user_country
-        , user_postal_code
-        , user_birth_month
-        , user_birth_day
-        , user_birth_year
-        , user_phone
-        , created_at
-        , updated_at
-        ,user_econtact_name
-        ,user_econtact_relationship
-        ,user_econtact_email
-        ,user_econtact_phone
+      SELECT *
       FROM users
       ORDER BY user_first_name DESC
     `;
