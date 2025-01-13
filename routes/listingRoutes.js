@@ -82,25 +82,37 @@ router.get("/api/listings", async (req, res) => {
   }
 });
 
-// GET request for individual listing 
-router.get("api/listing/:listingId", async (req, res) => {
+// GET request for individual listing
+router.get('/api/listing/:listingId', async (req, res) => {
   const { listingId } = req.params;
   console.log('listing ID:', listingId);
   try {
     const result = await pool.query(
-      `SELECT * FROM listings WHERE listing_id = $1`,[listingId]
+      `SELECT * FROM listings WHERE listing_id = $1`, [listingId]
     );
-    res.status(200).json(result.rows);
 
-  } catch(error) {
-    console.error("Error:", error);
+    // Check if the listing exists
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Listing not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error('Error:', error);
     res.status(500).json({
       success: false,
-      message: "Server error"
-    })
+      message: 'Server error',
+    });
   }
+});
 
-})
 
 
 
