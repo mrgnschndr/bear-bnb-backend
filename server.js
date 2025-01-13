@@ -10,7 +10,7 @@ const reviewsRouter = require('./routes/reviewsRoute')
 const hostRouter = require('./routes/hostRoutes')
 
 const app = express();
-const port = process.env.PORT || 5001; 
+const port = process.env.PORT || 5004; 
 
 // Middleware
 app.use(cors()); 
