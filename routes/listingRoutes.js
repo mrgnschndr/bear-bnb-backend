@@ -43,7 +43,14 @@ router.get('/api/listing/:listingId', async (req, res) => {
   console.log('listing ID:', listingId);
   try {
     const result = await pool.query(
-      `SELECT * FROM listings WHERE listing_id = $1`, [listingId]
+      `SELECT l.*, h.*, u.*
+      FROM listings l
+      INNER JOIN host h
+      ON l.host_id = h.host_id
+      INNER JOIN users u
+      ON h.user_id = u.user_id
+      WHERE listing_id = $1
+      `, [listingId]
     );
 
     // Check if the listing exists
