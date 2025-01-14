@@ -26,6 +26,7 @@ const seedHosts = async () => {
     const is_superhost = host_rating === 5.0; // Superhost condition
     const date_hosted = faker.date.past(10).toISOString(); // Random date within the past 10 years
     const host_bio = faker.lorem.sentence(); // Random short sentence as bio
+    const host_name = faker.person.firstName(); // Random first name
 
     // hosts.push({
     //     is_superhost,
@@ -49,9 +50,10 @@ const seedHosts = async () => {
         , host_rating
         , date_hosted 
         , host_bio
+        , host_name
         )
         VALUES (
-          $1, $2, $3, $4, $5, $6
+          $1, $2, $3, $4, $5, $6, $7
         )
       `, [
         userId,
@@ -59,7 +61,8 @@ const seedHosts = async () => {
         number_reviews,
         host_rating,
         date_hosted,
-        host_bio
+        host_bio,
+        host_name
       ]);
     }
     console.log("host seeded successfully");

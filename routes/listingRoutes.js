@@ -7,52 +7,7 @@ const pool = require("../db/db.js");
 router.get("/api/listings", async (req, res) => {
   try {
     const query = `
-        SELECT listing_id,
-            listing_address,
-            listing_city,
-            listing_state,
-            price_per_night,
-            full_rating,
-            main_image_url,
-            list_image_url,
-            listing_title,
-            listing_access,
-            listing_max_guest,
-            listing_bedrooms,
-            listing_baths,
-            is_self_checkin,
-            is_peaceful,
-            fun_tip,
-            space_description,
-            guest_access,
-            notes,
-            cleaning_fee,
-            service_fee,
-            number_reviews,
-            on_wishlist,
-            num_beds,
-            pets_allowed,
-            instant_book,
-            property_type,
-            views,
-            listing_tag,
-            accessibility,
-            checkin_time,
-            checkout_time,
-            allows_parties,
-            smoking_allowed,
-            wifi,
-            kitchen,
-            laundry,
-            air_conditioning,
-            heating,
-            pool,
-            free_parking,
-            gym,
-            coffee_maker,
-            free_breakfast,
-            created_at,
-            updated_at
+        SELECT *
         FROM listings
         ORDER BY listing_title DESC
     `;
@@ -88,7 +43,14 @@ router.get('/api/listing/:listingId', async (req, res) => {
   console.log('listing ID:', listingId);
   try {
     const result = await pool.query(
-      `SELECT * FROM listings WHERE listing_id = $1`, [listingId]
+      `SELECT l.*, h.*, u.*
+      FROM listings l
+      INNER JOIN host h
+      ON l.host_id = h.host_id
+      INNER JOIN users u
+      ON h.user_id = u.user_id
+      WHERE listing_id = $1
+      `, [listingId]
     );
 
     // Check if the listing exists
