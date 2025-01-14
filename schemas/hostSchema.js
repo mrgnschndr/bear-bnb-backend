@@ -17,7 +17,8 @@ const createHostTable = async () => {
             date_hosted DATE,
             host_bio VARCHAR(255),
             created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+            updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+            host_name VARCHAR(255)
         );
     `); 
 
