@@ -2,6 +2,7 @@ const { faker } = require('@faker-js/faker');
 require('dotenv').config({ path: '.env.test' });
 const { pool, closePool } = require('./jest.poolTest.js');
 
+console.log('File jest.setup.js is loading');
 
 beforeAll(() => {
     console.log('Database connection initializing...');
@@ -75,13 +76,13 @@ beforeEach(async () => {
   }
 });
 
-afterEach(async () => {
-  try {
-    await pool.query('TRUNCATE TABLE users, hosts, properties, reservations RESTART IDENTITY CASCADE');
-  } catch (err) {
-    console.error('Error during test table cleanup:', err);
-    throw err;
-  }
-});
+// afterEach(async () => {
+//   try {
+//     await pool.query('TRUNCATE TABLE users, hosts, properties, reservations RESTART IDENTITY CASCADE');
+//   } catch (err) {
+//     console.error('Error during test table cleanup:', err);
+//     throw err;
+//   }
+// });
 
-module.exports = pool;
+// module.exports = pool;
