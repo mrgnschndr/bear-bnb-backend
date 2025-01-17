@@ -1,6 +1,6 @@
 module.exports = {
     testEnvironment: 'node',
-    globalSetup: './completeDBSetup.js',
+    globalSetup: './setUpDatabase.js',
     // globalTeardown: './tearDownDatabase.js',
     setupFilesAfterEnv: ['./jest.setup.js'],
 };

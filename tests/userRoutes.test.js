@@ -11,6 +11,7 @@ describe('User Routes', () => {
     const { rows } = await pool.query('SELECT * FROM users');
     console.log('Query result:', rows);
 
+
     expect(rows.length).toBeGreaterThan(0);
     expect(rows).toEqual(expect.arrayContaining(rows));
   });
