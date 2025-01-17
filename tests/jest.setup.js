@@ -76,13 +76,13 @@ beforeEach(async () => {
   }
 });
 
-// afterEach(async () => {
-//   try {
-//     await pool.query('TRUNCATE TABLE users, hosts, properties, reservations RESTART IDENTITY CASCADE');
-//   } catch (err) {
-//     console.error('Error during test table cleanup:', err);
-//     throw err;
-//   }
-// });
+afterEach(async () => {
+  try {
+    await pool.query('TRUNCATE TABLE users, hosts, properties, reservations RESTART IDENTITY CASCADE');
+  } catch (err) {
+    console.error('Error during test table cleanup:', err);
+    throw err;
+  }
+});
 
-// module.exports = pool;
+module.exports = pool;

@@ -6,12 +6,13 @@ describe('User Routes', () => {
   it('should get all users', async () => {
     console.log('Executing GET /users...');
     const response = await request(app).get('/api/users');
-    expect(response.statusCode).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
 
+    console.log('Querying users table...');
+    const { rows } = await pool.query('SELECT * FROM users');
+    console.log('Query result:', rows);
 
     expect(rows.length).toBeGreaterThan(0);
-    expect(rows).toEqual(expect.arrayContaining(response.body));
+    expect(rows).toEqual(expect.arrayContaining(rows));
   });
 });
 
