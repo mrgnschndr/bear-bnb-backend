@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index'); // Express app
+const app = require('../server'); // Express app
 const { pool } = require('./jest.poolTest.js'); // Ensure same instance is used
 
 describe('User Routes', () => {
