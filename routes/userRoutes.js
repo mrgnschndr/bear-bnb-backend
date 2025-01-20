@@ -8,7 +8,7 @@ router.get("/api/users", async (req, res) => {
     const query = `
       SELECT *
       FROM users
-      ORDER BY user_first_name DESC
+      ORDER BY user_id
     `;
     const result = await Pool.query(query);
     
