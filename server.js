@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 // Import routes
 const usersRouter = require('./routes/userRoutes');
@@ -25,6 +26,11 @@ const config = {
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Route to get user profile
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 // Auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
