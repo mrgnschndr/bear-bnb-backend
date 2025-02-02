@@ -1,5 +1,3 @@
-JavaScript
-
 const pool = require('../db/db.js');
 
 const createUserTable = async () => {
@@ -11,10 +9,22 @@ const createUserTable = async () => {
     // Users table
     await client.query(`
       CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        name TEXT NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          user_id SERIAL PRIMARY KEY,
+          user_first_name VARCHAR(100),
+          user_last_name VARCHAR(100),
+          user_city VARCHAR(100),
+          user_state VARCHAR(100),
+          user_country VARCHAR(100),
+          is_logged_in BOOLEAN,
+          is_host BOOLEAN,
+          user_email VARCHAR(255) UNIQUE,
+          user_birth_month SMALLINT CHECK (user_birth_month BETWEEN 1 AND 12),
+          user_birth_day SMALLINT CHECK (user_birth_day BETWEEN 1 AND 31),
+          user_birth_year SMALLINT,
+          user_phone VARCHAR(20),
+          user_image_url TEXT,
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `); 
 
