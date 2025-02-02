@@ -2,6 +2,7 @@ const { faker } = require('@faker-js/faker');
 require('dotenv').config({ path: '.env.test' });
 const { pool, closePool } = require('./jest.poolTest.js');
 
+console.log('File jest.setup.js is loading');
 
 beforeAll(() => {
     console.log('Database connection initializing...');

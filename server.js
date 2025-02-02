@@ -48,6 +48,8 @@ app.use(hostRouter);
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-  console.log('Airbnb Clone Backend is live!');
+  console.log(`Server listening on port ${port}`); 
+  console.log('Airbnb Clone Backend is live!'); 
 });
+
+module.exports = app;
