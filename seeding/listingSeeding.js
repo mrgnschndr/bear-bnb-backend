@@ -34,8 +34,14 @@ const seedListings = async () => {
       const listing_state = faker.location.state()
       const price_per_night = faker.commerce.price({ min: 39, max: 1500, dec: 0, symbol: '$' })
       const full_rating = Math.round(faker.number.float({ min: 1, max: 5, precision: 0.1 }));
-      const main_image_url = faker.image.urlLoremFlickr(({ category: 'nature' }));
-      const list_image_url = [faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' })), faker.image.urlLoremFlickr(({ category: 'nature' }))];
+      const main_image_url = faker.image.urlPicsumPhotos({ blur: 0, grayscale: false });
+      const list_image_url = [
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),
+        faker.image.urlPicsumPhotos({ blur: 0, grayscale: false }),];
       const listing_title = title;
       const listing_access = access[randomNumber2];
       const listing_max_guest = faker.number.int({ min: 2, max: 15 });
